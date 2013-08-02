@@ -19,10 +19,10 @@ void usage(char *progname) {
 }
 
 int main(int argc, char** argv) {
-	if (argv[1][0]=='-') {
+	if (argv[1]==NULL) usage(argv[0]);
+	else if (argv[1][0]=='-') {
 		if (argv[1][1]=='h'||argv[1][2]=='h') usage(argv[0]);
     }
-	else if (argv[1]==NULL) usage(argv[0]);
 	else {
 		len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store",argv[1]);
 		if (len<=sizeof(command)) {
