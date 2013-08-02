@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 		len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store",argv[1]);
 		if (len<=sizeof(command)) {
 			url=popen(command,"r");
-			while (fgets(output,sizeof(output),url)) printf("%s",output);
+			while (fgets(output,sizeof(output),url)) printf("%s\n",output);
 	    }
 		else fprintf(stderr,"Command buffer too short");
     }
