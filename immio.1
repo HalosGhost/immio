@@ -1,0 +1,25 @@
+'\" 
+.\"     Title: immio
+.\"    Author: [Sam Stuewe]
+.\"      Date: 2013-08-02
+.\"  Language: English
+.\"
+.TH "IMMIO" "1" "2013-08-02" "\ \& 0\&.1" "\ \&"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.nh
+.ad l
+.\"
+.\" <- Main Content ->
+.SH "NAME"
+immio \- command-line image uploader
+.SH "SYNOPSIS"
+.sp
+immio [\-h|\-\-help] <path to file>
+.sp
+or anything that can POST. For example:
+.RS 4
+curl -F image=@/path/to/file http://imm.io
+.RE 4
+.SH "SEE ALSO"
+\fBcurl\fR(1)
