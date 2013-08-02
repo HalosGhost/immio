@@ -19,6 +19,16 @@ void usage(char *progname) {
 	exit(44);
 }
 
+void upload(char *file,int lnk) {
+	len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store|cut -d \'\"\' -f%d",file,lnk);
+	if (len<=sizeof(command)) {
+		url=popen(command,"r");
+		while (fgets(output,sizeof(output),url)) printf("%s\n",output);
+		pclose(url);
+	}
+	else fprintf(stderr,"Command buffer too short");
+}
+
 int main(int argc, char** argv) {
 	if (argv[1]==NULL) usage(argv[0]);
 	for (i = 1; i < argc; i++) {
@@ -27,13 +37,7 @@ int main(int argc, char** argv) {
 			else if (argv[i][1]=='d'||argv[i][2]=='d') n=12;
 		}
 		else {
-			len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store|cut -d \'\"\' -f%d",argv[i],n);
-			if (len<=sizeof(command)) {
-				url=popen(command,"r");
-				while (fgets(output,sizeof(output),url)) printf("%s\n",output);
-				pclose(url);
-			}
-			else fprintf(stderr,"Command buffer too short");
+			upload(argv[i],n);
 		}
 	}
 	return 0;
