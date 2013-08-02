@@ -11,26 +11,30 @@
 FILE *url;
 char command[256];
 char output[256];
-int len;
+int len,i;
+int n=16;
 
 void usage(char *progname) {
-	fprintf(stderr,"Usage: %s [-h|--help] <FILE>\n",progname);
+	fprintf(stderr,"Usage: %s [-h|--help] [-d|--direct] <FILE>\n",progname);
 	exit(44);
 }
 
 int main(int argc, char** argv) {
-	if (argv[1]==NULL) usage(argv[0]);
-	else if (argv[1][0]=='-') {
-		if (argv[1][1]=='h'||argv[1][2]=='h') usage(argv[0]);
-    }
-	else {
-		len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store|cut -d \'\"\' -f12",argv[1]);
-		if (len<=sizeof(command)) {
-			url=popen(command,"r");
-			while (fgets(output,sizeof(output),url)) printf("%s\n",output);
-			pclose(url);
-	    }
-		else fprintf(stderr,"Command buffer too short");
-    }
-    return 0;
+	for (i = 1; i < argc; i++) {
+		if (argv[1]==NULL) usage(argv[0]);
+		else if (argv[i][0]=='-') {
+			if (argv[i][1]=='h'||argv[i][2]=='h') usage(argv[0]);
+			else if (argv[i][1]=='d'||argv[i][2]=='d') n=12;
+		}
+		else {
+			len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store|cut -d \'\"\' -f%d",argv[i],n);
+			if (len<=sizeof(command)) {
+				url=popen(command,"r");
+				while (fgets(output,sizeof(output),url)) printf("%s\n",output);
+				pclose(url);
+			}
+			else fprintf(stderr,"Command buffer too short");
+		}
+	}
+	return 0;
 }

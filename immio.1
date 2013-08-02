@@ -15,11 +15,11 @@
 immio \- command-line image uploader
 .SH "SYNOPSIS"
 .sp
-immio [\-h|\-\-help] <path to file>
+immio [\-h|\-\-help] [\-d|\-\-direct] <file1 [file2 ... fileN]>
 .sp
-or anything that can POST. For example:
 .RS 4
-curl -F image=@/path/to/file http://imm.io
-.RE 4
+\-d,  \-\-direct     post direct links to images
+                  instead of landing pages
+.RE
 .SH "SEE ALSO"
 \fBcurl\fR(1)
