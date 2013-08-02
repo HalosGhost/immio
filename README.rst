@@ -6,6 +6,7 @@ To-do
 -----
 *Sorted by level of importance*
 
+#. Add support for uploading multiple images
 #. Have output formatting done natively in C (if possible)
 #. Add options (and relevant documentation) for managing images (not just uploading them)
 #. Print more helpful ``help``
