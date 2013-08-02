@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
 		if (len<=sizeof(command)) {
 			url=popen(command,"r");
 			while (fgets(output,sizeof(output),url)) printf("%s\n",output);
+			pclose(url);
 	    }
 		else fprintf(stderr,"Command buffer too short");
     }
