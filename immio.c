@@ -20,9 +20,9 @@ void usage(char *progname) {
 }
 
 int main(int argc, char** argv) {
+	if (argv[1]==NULL) usage(argv[0]);
 	for (i = 1; i < argc; i++) {
-		if (argv[1]==NULL) usage(argv[0]);
-		else if (argv[i][0]=='-') {
+		if (argv[i][0]=='-') {
 			if (argv[i][1]=='h'||argv[i][2]=='h') usage(argv[0]);
 			else if (argv[i][1]=='d'||argv[i][2]=='d') n=12;
 		}
