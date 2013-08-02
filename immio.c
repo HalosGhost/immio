@@ -15,7 +15,7 @@ int len,i;
 int n=16;
 
 void usage(char *progname) {
-	fprintf(stderr,"Usage: %s [-h|--help] [-d|--direct] <FILE>\n",progname);
+	fprintf(stderr,"Usage: %s [-h|--help] [-d|--direct] <file1 [file2 ... fileN]>\n",progname);
 	exit(44);
 }
 
