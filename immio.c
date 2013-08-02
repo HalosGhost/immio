@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 		if (argv[1][1]=='h'||argv[1][2]=='h') usage(argv[0]);
     }
 	else {
-		len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store",argv[1]);
+		len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store|cut -d \'\"\' -f12",argv[1]);
 		if (len<=sizeof(command)) {
 			url=popen(command,"r");
 			while (fgets(output,sizeof(output),url)) printf("%s\n",output);
