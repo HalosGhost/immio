@@ -4,7 +4,7 @@
 .\"      Date: 2013-08-02
 .\"  Language: English
 .\"
-.TH "IMMIO" "1" "2013-08-02" "\ \& 0\&.1" "\ \&"
+.TH "IMMIO" "1" "2013-08-02" "\ \& 1\&.0" "\ \&"
 .ie \n(.g .ds Aq \(aq
 .el       .ds Aq '
 .nh
@@ -14,12 +14,45 @@
 .SH "NAME"
 immio \- command-line image uploader
 .SH "SYNOPSIS"
+.B immio
+.BR [ \-d ]
+.IB "file1 " [ 
+.RI "... " fileN
+.B ]
+.br
+.B immio \-r 
+.IB "id1 token1 " [ 
+.RI "... " "idN tokenN"
+.B ]
+.br
+.B immio \-m
+.IB "id1 token1 name1 " [ 
+.RI "... " "idN tokenN nameN"
+.B ]
+.SH "DESCRIPTION"
 .sp
-immio [\-h|\-\-help] [\-d|\-\-direct] <file1 [file2 ... fileN]>
+.B immio 
+is a CLI front-end, using
+.BR curl (1),
+.RI "for " "imm.io" ,
+an image sharing site with great flexibility\&. 
 .sp
-.RS 4
-\-d,  \-\-direct     post direct links to images instead
-                  of landing pages
-.RE
+Files may be formatted as JPG, PNG, BMP, AI, DNG, PDF, ICO, PSD, PXD, TGA and others\&. Images wider than 1600 pixels or taller than 4000 pixels will be scaled down (though there is no maximum size)\&. 50 images may be uploaded per hour per IP address, and images that have not been viewed for 30 days will be automatically deleted\&.
+.sp
+Also note that images of an offensive nature will be removed\&.
+.SH "OPTIONS"
+.sp
+.IP -d
+Post direct links to images instead of landing pages\&.
+.IP -r
+Delete image with 
+.IR id \&.
+.IP -m
+Rename image with 
+.IR id " to " name \&.
+.IP -v
+Return more verbose information about the image\&.
+.SH "AUTHOR"
+Sam Stuewe <halosghost at archlinux dot info>
 .SH "SEE ALSO"
-\fBcurl\fR(1)
+.BR curl (1)
