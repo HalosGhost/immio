@@ -6,8 +6,7 @@ To-do
 -----
 *Sorted by level of importance*
 
-#. Add support for uploading multiple images
 #. Use native solutions wherever possible
-#. Add options (and relevant documentation) for managing images (not just uploading them)
+#. Add options for managing images (may need upstream API changes)
 #. Print more helpful ``help``
 #. Add ``-v|--verbose`` flag to output more information about the image
