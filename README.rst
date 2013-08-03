@@ -6,7 +6,5 @@ To-do
 -----
 *Sorted by level of importance*
 
-#. Use native solutions wherever possible
-#. Add options for managing images (may need upstream API changes)
-#. Print more helpful ``help``
-#. Add ``-v|--verbose`` flag to output more information about the image
+#. Use native solutions wherever possible (``libcurl``?)
+#. Make managing and verbosity options functional (may require some upstream API changes)
