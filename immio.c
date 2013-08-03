@@ -38,6 +38,23 @@ void upload(char *file,int lnk) {
 	else fprintf(stderr,"Command buffer too short");
 }
 
+void rmimg(char *id,char *token) {
+	fprintf(stderr,"This option is under construction");
+	// Remove identified image with associated token
+	exit(1);
+}
+
+void mvimg(char *id,char *token, char *name) {
+	fprintf(stderr,"This option is under construction");
+	// Change identified image with associated token to have new name
+	exit(1);
+}
+
+void insargs(int arglen) {
+	fprintf(stderr,"This option requires %d arguments.\n",arglen);
+	exit(1);
+}
+
 int main(int argc, char** argv) {
 	if (argv[1]==NULL) usage(argv[0]);
 	for (i = 1; i < argc; i++) {
@@ -49,15 +66,13 @@ int main(int argc, char** argv) {
 			else if (argv[i][1]=='d') n=12;
 
 			else if (argv[i][1]=='r') {
-				if (argv[i+1]==NULL||argv[i+2]==NULL) usage(argv[0]);
-			    else { fprintf(stderr,"This option is still under construction.\n"); return 1; }
-					 // post id with associated token
+				if (argv[i+1]==NULL||argv[i+2]==NULL) insargs(2);
+			    else rmimg(argv[i+1],argv[i+2]);
 			}
 
 			else if (argv[i][1]=='m') {
-				if (argv[i+1]==NULL||argv[i+2]==NULL||argv[i+3]==NULL) usage(argv[0]);
-				else { fprintf(stderr,"This option is still under construction.\n"); return 1; }
-					 // post id with associated token and new name
+				if (argv[i+1]==NULL||argv[i+2]==NULL||argv[i+3]==NULL) insargs(3);
+				else mvimg(argv[i+1],argv[i+2],argv[i+3]);
 			}
 
 			else if (argv[i][1]=='v') { v=1; fprintf(stderr,"Verbosity has not yet been implemented.\n"); }
