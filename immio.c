@@ -51,7 +51,7 @@ void mvimg(char *id,char *token, char *name) {
 }
 
 void insargs(int arglen) {
-	fprintf(stderr,"This option requires %d arguments.\n",arglen);
+	fprintf(stderr,"This option requires %d argument(s).\n",arglen);
 	exit(1);
 }
 
@@ -63,7 +63,10 @@ int main(int argc, char** argv) {
 
 			else if (argv[i][1]=='h') usage(argv[0]);
 
-			else if (argv[i][1]=='d') n=12;
+			else if (argv[i][1]=='d') {
+				if (argv[i+1]==NULL) insargs(1);
+				else n=12;
+			}
 
 			else if (argv[i][1]=='r') {
 				if (argv[i+1]==NULL||argv[i+2]==NULL) insargs(2);
