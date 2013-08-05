@@ -9,9 +9,9 @@
 #include <unistd.h>
 
 FILE *url;
-char command[256],output[256];
+char command[256],payload[256];
 int len,i;
-int n=16;
+int dirlnk=0;
 int v=0;
 
 void usage(char *progname) {
@@ -28,14 +28,18 @@ void usage(char *progname) {
 	exit(44);
 }
 
-void upload(char *file,int lnk) {
-	len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store|cut -d \'\"\' -f%d",file,lnk);
+void upload(char *file,int uri) {
+	len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store",file);
 	if (len<=sizeof(command)) {
-		url=popen(command,"r");
-		while (fgets(output,sizeof(output),url)) printf("%s\n",output);
-		pclose(url);
+		if ( (url=popen(command,"r")) ) {
+			if ( uri=='1' ) fscanf(url,"%*s \"link\": \"%s\"",payload); // Read in direct link
+			else fscanf(url,"%*s \"uri\": \"%s\"",payload); // Read in landing page link
+			pclose(url);
+			fprintf(stdout,"%s\n",payload);
+		}
+		else { fprintf(stderr,"Upload Failed\n");exit(1); }
 	}
-	else fprintf(stderr,"Command buffer too short");
+	else { fprintf(stderr,"Command buffer too short\n"); exit(1); }
 }
 
 void rmimg(char *id,char *token) {
@@ -56,35 +60,27 @@ void insargs(int arglen) {
 }
 
 int main(int argc, char** argv) {
-	if (argv[1]==NULL) usage(argv[0]);
-	for (i = 1; i < argc; i++) {
-		if (argv[i][0]=='-') {
-			if (argv[i][1]=='\0') usage(argv[0]);
+	if ( !argv[1] ) usage(argv[0]);
+	for ( i = 1; i < argc; i++ ) {
+		if ( argv[i][0]=='-' ) {
+			switch ( argv[i][1] ) {
+				case 'h': usage(argv[0]); break;
+				case 'd': dirlnk=1; break;
+				case 'r':
+					if ( argv[i+1] && argv[i+2] ) rmimg(argv[i+1],argv[i+2]);
+					else insargs(2); break;
 
-			else if (argv[i][1]=='h') usage(argv[0]);
+				case 'm':
+					if ( argv[i+1] && argv[i+2] && argv[i+3] ) mvimg(argv[i+1],argv[i+2],argv[i+3]);
+					else insargs(3); break;
 
-			else if (argv[i][1]=='d') {
-				if (argv[i+1]==NULL) insargs(1);
-				else n=12;
+				case 'v': v=1; fprintf(stderr,"Verbosity has not yet been implemented.\n");	break;
+				default:
+					fprintf(stderr,"Unrecognized option.\nSee `%s -h` or `man %s` for help.\n",argv[0],argv[0]);
+					exit(1); break;
 			}
-
-			else if (argv[i][1]=='r') {
-				if (argv[i+1]==NULL||argv[i+2]==NULL) insargs(2);
-			    else rmimg(argv[i+1],argv[i+2]);
-			}
-
-			else if (argv[i][1]=='m') {
-				if (argv[i+1]==NULL||argv[i+2]==NULL||argv[i+3]==NULL) insargs(3);
-				else mvimg(argv[i+1],argv[i+2],argv[i+3]);
-			}
-
-			else if (argv[i][1]=='v') { v=1; fprintf(stderr,"Verbosity has not yet been implemented.\n"); }
-
-			else fprintf(stderr,"Unrecognized option.\nSee `%s -h` or `man %s` for help.\n",argv[0],argv[0]);
 		}
-		else {
-			upload(argv[i],n);
-		}
+		else upload(argv[i],dirlnk);
 	}
 	return 0;
 }
