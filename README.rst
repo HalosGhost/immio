@@ -4,7 +4,7 @@ With the demise of ompldr, I felt the need to find a new "image pastebin." I qui
 
 For the moment, the operation ``immio`` performs is actually run through a shell solution. That is, it runs ``curl`` through the user's shell. I am exploring implementing ``libcurl`` instead which should greatly increase the speed (and portability) of this utility.
 
-Given the nature of this project, it should probably be considered beta software (if not alpha); but, if you would like to try it, the `Makefile <https://github.com/HalosGhost/immio/Makefile>`_ should offer a sane default for general compilation. I have also made a snapshot-style `PKGBUILD <https://github.com/HalosGhost/Packages/immio-git.PKGBUILD>`_ for easy building for Arch Linux users.
+Given the nature of this project, it should probably be considered beta software (if not alpha); but, if you would like to try it, the `Makefile <https://github.com/HalosGhost/immio/blob/master/Makefile>`_ should offer a sane default for general compilation. I have also made a snapshot-style `PKGBUILD <https://github.com/HalosGhost/Packages/blob/master/immio-git.PKGBUILD>`_ for easy building for Arch Linux users.
 
 To-do
 -----
