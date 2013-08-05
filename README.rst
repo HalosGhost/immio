@@ -12,3 +12,7 @@ To-do
 
 #. Use native solutions wherever possible (``libcurl``?)
 #. Make managing and verbosity options functional (may require upstream API change)
+
+Acknowledgments
+---------------
+Though this code was essentially built from the ground-up by "yours truly," I would be remiss to not mention someone without whom this project would never have been possible. He has helped me incalcuably in learning C, in general, and helped me troubleshoot my code when seeing my errors was beyond me, Jesse McClure (a.k.a. `TrilbyWhite <https://github.com/TrilbyWhite`_. If you're not familiar with his work, definitely check it out. Several of his projects make up the majority of what I use as a desktop environment.
