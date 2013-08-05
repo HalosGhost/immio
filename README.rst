@@ -11,4 +11,5 @@ To-do
 *Sorted by level of importance*
 
 #. Use native solutions wherever possible (``libcurl``?)
+#. Clean up code-style (e.g., look into ``case`` instead of giant ``if … else if … else`` blocks)
 #. Make managing and verbosity options functional (may require upstream API change)
