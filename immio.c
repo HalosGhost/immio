@@ -10,9 +10,7 @@
 
 FILE *url;
 char command[256],payload[256];
-int len,i;
-int dirlnk=0;
-int v=0;
+int len,i,dirlnk=0,verbose=0;
 
 void usage(char *progname) {
 	fprintf(stderr,"Usage: %s [-d|-v] image(s)\n",progname);
@@ -74,7 +72,7 @@ int main(int argc, char** argv) {
 					if ( argv[i+1] && argv[i+2] && argv[i+3] ) mvimg(argv[i+1],argv[i+2],argv[i+3]);
 					else insargs(3); break;
 
-				case 'v': v=1; fprintf(stderr,"Verbosity has not yet been implemented.\n");	break;
+				case 'v': verbose=1; fprintf(stderr,"Verbosity has not yet been implemented.\n"); break;
 				default:
 					fprintf(stderr,"Unrecognized option.\nSee `%s -h` or `man %s` for help.\n",argv[0],argv[0]);
 					exit(1); break;
