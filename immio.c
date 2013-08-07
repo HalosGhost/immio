@@ -9,8 +9,8 @@
 #include <unistd.h>
 
 FILE *url;
-char command[256],payload[256];
-int len,i,dirlnk=0,verbose=0;
+char command[256],uid[256],name[256],ext[256],size[256];
+int len,i,width,height,dirlnk=0,verbose=0;
 
 void usage(char *progname) {
 	fprintf(stderr,"Usage: %s [-d|-v] image(s)\n",progname);
@@ -30,10 +30,16 @@ void upload(char *file,int uri) {
 	len=snprintf(command,sizeof(command),"curl -F image=@\"%s\" imm.io/store",file);
 	if (len<=sizeof(command)) {
 		if ( (url=popen(command,"r")) ) {
-			if ( uri=='1' ) fscanf(url,"%*s \"link\": \"%s\"",payload); // Read in direct link
-			else fscanf(url,"%*s \"uri\": \"%s\"",payload); // Read in landing page link
+			fscanf(url,"%*[^i]id\": \"%[^\"]\",%*[^,],%*[^,],%*[^m]me\": \"%[^\"]\"%*[^x]xt\": \"%[^\"]\"%*[^:]: %d,%*[^:]: %d, %*[^:]: \"%[^\"]\"",uid,name,ext,&width,&height,size);
 			pclose(url);
-			fprintf(stdout,"%s\n",payload);
+			fprintf(stdout,"link: ");
+			if (uri) fprintf(stdout,"http://i.imm.io/%s.%s\n",uid,ext);
+			else fprintf(stdout,"http://imm.io/%s\n",uid);
+			if (verbose) {
+				fprintf(stdout,"name: \"%s\"\n",name);
+				fprintf(stdout,"dimensions: %dx%d\n",width,height);
+				fprintf(stdout,"size: %s\n",size);
+			}
 		}
 		else { fprintf(stderr,"Upload Failed\n");exit(1); }
 	}
@@ -72,9 +78,9 @@ int main(int argc, char** argv) {
 					if ( argv[i+1] && argv[i+2] && argv[i+3] ) mvimg(argv[i+1],argv[i+2],argv[i+3]);
 					else insargs(3); break;
 
-				case 'v': verbose=1; fprintf(stderr,"Verbosity has not yet been implemented.\n"); break;
+				case 'v': verbose=1; break;
 				default:
-					fprintf(stderr,"Unrecognized option.\nSee `%s -h` or `man %s` for help.\n",argv[0],argv[0]);
+					fprintf(stderr,"Unrecognized option (%s).\nSee `%s -h` or `man %s` for help.\n",argv[i],argv[0],argv[0]);
 					exit(1); break;
 			}
 		}
