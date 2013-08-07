@@ -16,19 +16,20 @@ immio \- command-line image uploader
 .SH "SYNOPSIS"
 .B immio
 .BR [ \-d ]
+.BR [ \-v ]
 .IB "file1 " [ 
 .RI "... " fileN
 .B ]
-.br
-.B immio \-r 
-.IB "id1 token1 " [ 
-.RI "... " "idN tokenN"
-.B ]
-.br
-.B immio \-m
-.IB "id1 token1 name1 " [ 
-.RI "... " "idN tokenN nameN"
-.B ]
+.\".br
+.\".B immio \-r 
+.\".IB "id1 token1 " [ 
+.\".RI "... " "idN tokenN"
+.\".B ]
+.\".br
+.\".B immio \-m
+.\".IB "id1 token1 name1 " [ 
+.\".RI "... " "idN tokenN nameN"
+.\".B ]
 .SH "DESCRIPTION"
 .sp
 .B immio 
@@ -44,12 +45,12 @@ Also note that images of an offensive nature will be removed\&.
 .sp
 .IP -d
 Post direct links to images instead of landing pages\&.
-.IP -r
-Delete image with 
-.IR id \&.
-.IP -m
-Rename image with 
-.IR id " to " name \&.
+.\".IP -r
+.\"Delete image with 
+.\".IR id \&.
+.\".IP -m
+.\"Rename image with 
+.\".IR id " to " name \&.
 .IP -v
 Return more verbose information about the image\&.
 .SH "AUTHOR"

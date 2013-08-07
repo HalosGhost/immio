@@ -13,14 +13,14 @@ char command[256],uid[256],name[256],ext[256],size[256];
 int len,i,width,height,dirlnk=0,verbose=0;
 
 void usage(char *progname) {
-	fprintf(stderr,"Usage: %s [-d|-v] image(s)\n",progname);
-	fprintf(stderr,"   or: %s -r id token\n",progname);
-	fprintf(stderr,"   or: %s -m id token name\n\n",progname);
+	fprintf(stderr,"Usage: %s [-d|-v] image(s)\n\n",progname);
+	//fprintf(stderr,"   or: %s -r id token\n",progname);
+	//fprintf(stderr,"   or: %s -m id token name\n\n",progname);
 	fprintf(stderr,"All arguments are mandatory for removing and renaming.\n");
 	fprintf(stderr,"  -d   post direct links to images rather\n         than to landing pages.\n");
 	fprintf(stderr,"  -h   print this help message.\n");
-	fprintf(stderr,"  -r   remove identified image.\n");
-	fprintf(stderr,"  -m   rename identified image.\n");
+	/*fprintf(stderr,"  -r   remove identified image.\n");
+	fprintf(stderr,"  -m   rename identified image.\n");*/
 	fprintf(stderr,"  -v   be more verbose when printing\n         image information.\n\n");
 	fprintf(stderr,"See `man %s` for more information.\n",progname);
 	exit(44);
@@ -47,13 +47,13 @@ void upload(char *file,int uri) {
 }
 
 void rmimg(char *id,char *token) {
-	fprintf(stderr,"This option is under construction");
+	fprintf(stderr,"This option is under construction\n");
 	// Remove identified image with associated token
 	exit(1);
 }
 
 void mvimg(char *id,char *token, char *name) {
-	fprintf(stderr,"This option is under construction");
+	fprintf(stderr,"This option is under construction\n");
 	// Change identified image with associated token to have new name
 	exit(1);
 }
@@ -71,12 +71,12 @@ int main(int argc, char** argv) {
 				case 'h': usage(argv[0]); break;
 				case 'd': dirlnk=1; break;
 				case 'r':
-					if ( argv[i+1] && argv[i+2] ) rmimg(argv[i+1],argv[i+2]);
-					else insargs(2); break;
+					/*if ( argv[i+1] && argv[i+2] )*/ rmimg(argv[i+1],argv[i+2]); break;
+					//else insargs(2); break;
 
 				case 'm':
-					if ( argv[i+1] && argv[i+2] && argv[i+3] ) mvimg(argv[i+1],argv[i+2],argv[i+3]);
-					else insargs(3); break;
+					/*if ( argv[i+1] && argv[i+2] && argv[i+3] )*/ mvimg(argv[i+1],argv[i+2],argv[i+3]); break;
+					//else insargs(3); break;
 
 				case 'v': verbose=1; break;
 				default:
