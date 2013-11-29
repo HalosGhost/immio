@@ -1,59 +1,65 @@
-'\" 
-.\"     Title: immio
-.\"    Author: [Sam Stuewe]
-.\"      Date: 2013-08-02
-.\"  Language: English
-.\"
-.TH "IMMIO" "1" "2013-08-02" "\ \& 1\&.0" "\ \&"
-.ie \n(.g .ds Aq \(aq
-.el       .ds Aq '
-.nh
-.ad l
-.\"
-.\" <- Main Content ->
-.SH "NAME"
-immio \- command-line image uploader
-.SH "SYNOPSIS"
-.B immio
-.BR [ \-d ]
-.BR [ \-v ]
-.IB "file1 " [ 
-.RI "... " fileN
-.B ]
-.\".br
-.\".B immio \-r 
-.\".IB "id1 token1 " [ 
-.\".RI "... " "idN tokenN"
-.\".B ]
-.\".br
-.\".B immio \-m
-.\".IB "id1 token1 name1 " [ 
-.\".RI "... " "idN tokenN nameN"
-.\".B ]
-.SH "DESCRIPTION"
-.sp
-.B immio 
-is a CLI front-end, using
-.BR curl (1),
-.RI "for " "imm.io" ,
-an image sharing site with great flexibility\&. 
-.sp
-Files may be formatted as JPG, PNG, BMP, AI, DNG, PDF, ICO, PSD, PXD, TGA and others\&. Images wider than 1600 pixels or taller than 4000 pixels will be scaled down (though there is no maximum size)\&. 50 images may be uploaded per hour per IP address, and images that have not been viewed for 30 days will be automatically deleted\&.
-.sp
-Also note that images of an offensive nature will be removed\&.
-.SH "OPTIONS"
-.sp
-.IP -d
-Post direct links to images instead of landing pages\&.
-.\".IP -r
-.\"Delete image with 
-.\".IR id \&.
-.\".IP -m
-.\"Rename image with 
-.\".IR id " to " name \&.
-.IP -v
-Return more verbose information about the image\&.
-.SH "AUTHOR"
-Sam Stuewe <halosghost at archlinux dot info>
-.SH "SEE ALSO"
-.BR curl (1)
+'\" t
+.\" Manual page created with latex2man on Fri Nov 29 15:27:32 CST 2013
+.\" NOTE: This file is generated, DO NOT EDIT.
+.de Vb
+.ft CW
+.nf
+..
+.de Ve
+.ft R
+
+.fi
+..
+.TH "IMMIO" "1" "29 November 2013" "image uploader " "image uploader "
+.SH NAME
+
+.PP
+Immio
+\- A CLI frontend for imm.io 
+.PP
+.SH SYNOPSIS
+
+immio
+[\fB\-h\fP]
+[\fB\-v\fP]
+[\fB\-d\fP]
+\fIfilename(s)\fP
+.PP
+.SH DESCRIPTION
+
+Immio
+is a very lightweight image uploader for imm.io using \fIcurl\fP(1)\&.
+.PP
+.SH OPTIONS
+
+.TP
+\fB\-h\fP
+ Print help and exit 
+.TP
+\fB\-v\fP
+ Provide more verbose information about the uploaded image(s) 
+.TP
+\fB\-d\fP
+ Return direct links instead of landing pages 
+.TP
+\fIfilename(s)\fP
+ File or files to be uploaded 
+.PP
+.SH AUTHOR
+
+Copyright (C)2012\-2013 Sam Stuewe 
+.br
+License GPLv3: GNU GPL version 3 \fBhttp://gnu.org/licenses/gpl.html\fP
+.br
+This is free software: you are free to change and redistribute it. 
+.br
+There is NO WARRANTY, to the extent permitted by law. 
+.PP
+Bug reports, suggestions and comments may be submitted via GitHub (\fBhttp://github.com/HalosGhost/immio.git\fP)
+or email (\fBhalosghost@archlinux.info\fP).
+.PP
+.SH SEE ALSO
+
+\fIcurl\fP(1)
+.PP
+.\" NOTE: This file is generated, DO NOT EDIT.

@@ -1,0 +1,42 @@
+\documentclass{latex2man}
+
+\begin{Name}{1}{immio}{Sam Stuewe}{image uploader}{Immio - A CLI frontend for imm.io}
+
+\Prog{Immio} - A CLI frontend for imm.io
+
+\end{Name}
+
+\section{Synopsis}
+\Prog{immio}
+\oOpt{-h}
+\oOpt{-v}
+\oOpt{-d}
+\Arg{filename(s)}
+
+\section{Description}
+\Prog{Immio} is a very lightweight image uploader for imm.io using \Cmd{curl}{1}.
+
+\section{Options}
+\begin{description}
+   \item[\Opt{-h}]
+      Print help and exit
+   \item[\Opt{-v}]
+      Provide more verbose information about the uploaded image(s)
+   \item[\Opt{-d}]
+      Return direct links instead of landing pages
+   \item[\Arg{filename(s)}]
+      File or files to be uploaded
+\end{description}
+
+\section{Author}
+Copyright \copyright 2012-2013 Sam Stuewe \\
+License GPLv3: GNU GPL version 3 \URL{http://gnu.org/licenses/gpl.html} \\
+This is free software: you are free to change and redistribute it. \\
+There is NO WARRANTY, to the extent permitted by law.
+
+Bug reports, suggestions and comments may be submitted via GitHub (\URL{http://github.com/HalosGhost/immio.git}) or email (\Email{halosghost@archlinux.info}).
+
+\section{See Also}
+\Cmd{curl}{1}
+
+\LatexManEnd
